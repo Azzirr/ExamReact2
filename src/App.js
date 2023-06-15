@@ -5,8 +5,7 @@ import { Navigate } from "react-router-dom";
 import ProductsList from "./components/ProductsList/ProductsList";
 import ShopingList from "./components/ShopingList/ShopingList";
 // import { Outlet } from "react-router-dom";
-// import ProductsList from "./components/ProductsList/ProductsList";
-// import shoppingList from "./components/shoppingList/shoppingList";
+
 
 function App(props) {
   const userExist = localStorage.getItem("user");

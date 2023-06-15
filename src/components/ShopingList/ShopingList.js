@@ -28,7 +28,7 @@ function ShoppingList() {
       dispatch(setLoadingState('error'))
     }
   }
-  
+
   return (
     <div className={commonColumnsStyles.App}>
       <header className={commonColumnsStyles.AppHeader}>
@@ -36,7 +36,7 @@ function ShoppingList() {
         { loadingState === 'loading' ? <CircularProgress/> :
           shoppingList.map((product) => (
             <span key={product.id}>
-              {product.name} {product.id}
+              {product.name} 
               <button onClick={() => deleteShoppingProduct(product.id)}>DELETE PRODUCT</button>
             </span>
           ))

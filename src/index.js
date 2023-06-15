@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Page404 from "./components/Page404/Page404";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -19,9 +20,12 @@ const router = createBrowserRouter([
     path: "/products",
     element: <App />,
     children: [
-      // ...
     ],
   },
+  {
+    path: "details",
+    element: <ProductDetails/>
+  }
 ]);
 
 ReactDOM.render(
