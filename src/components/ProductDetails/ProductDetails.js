@@ -8,8 +8,15 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const matchProduct = useSelector((state) => state.products.detailsSelectedProduct);
 
+  function handleKey(event){
+    event.preventDefault();
+    if(event.key === 'Backspace'){
+      navigate('/products');
+    }
+  }
+
   return (
-    <div className={commonColumnsStyles.App}>
+    <div className={commonColumnsStyles.App}  tabIndex={0} onKeyDown={handleKey}>
       <header className={commonColumnsStyles.AppHeader}>
         <ArrowBackIcon onClick={() => navigate(-1)} />
         <p>Product Details</p>
