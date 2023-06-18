@@ -27,6 +27,9 @@ export const productsSlice = createSlice({
     filterProducts: (state, value) => {
       state.list = state.listContainer.filter(product => product.name.toLowerCase().includes(value.payload))
     },
+    filterByIsFood: (state, value) => {
+      state.list = state.listContainer.filter(product => product.isFood === true)
+    },
     setDetailsSelectedProduct: (state, value) => {
       state.detailsSelectedProduct = value.payload;
     }
@@ -34,6 +37,6 @@ export const productsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { loadProducts, loadShoppingProducts, setLoadingState, setLoadingStateMainProducts, filterProducts, setDetailsSelectedProduct } = productsSlice.actions  
+export const { loadProducts, loadShoppingProducts, setLoadingState, setLoadingStateMainProducts, filterProducts, setDetailsSelectedProduct, filterByIsFood, setIsFoodState } = productsSlice.actions  
 
 export default productsSlice.reducer

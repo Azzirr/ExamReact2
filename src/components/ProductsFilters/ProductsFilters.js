@@ -5,16 +5,17 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
-import { filterProducts } from "../../redux/productsSlice";
+import { filterProducts} from "../../redux/productsSlice";
 import { useDispatch } from "react-redux";
 
-function ProductsFilters() {
+function ProductsFilters({handleChange}) {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
   const filterProductsFunction = () => {
     dispatch(filterProducts(searchValue))
   }
-  filterProductsFunction()
+  filterProductsFunction();
+
   return (
     <div className={styles.filtersHeaderWrapper}>
       <Typography variant="h4">Filtruj produkty: </Typography>
@@ -33,6 +34,9 @@ function ProductsFilters() {
           <FormControlLabel
             control={<Checkbox />}
             label="Tylko produkty spożywcze"
+            type="checkbox"
+            name="agreement"
+            onChange={handleChange}
           />
         </div>
       </FormGroup>

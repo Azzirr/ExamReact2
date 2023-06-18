@@ -12,7 +12,7 @@ const ProductDetails = () => {
     <div className={commonColumnsStyles.App}>
       <header className={commonColumnsStyles.AppHeader}>
         <ArrowBackIcon onClick={() => navigate(-1)} />
-        <p>Airport Details</p>
+        <p>Product Details</p>
         <span>Nazwa: {matchProduct.name}</span>
         <span>Kategoria: {matchProduct.category}</span>
         <span>Jedzenie: {matchProduct.isFood.toString()}</span>
