@@ -81,7 +81,7 @@ function ProductsList() {
       navigate("/");
     }
   }
-  
+
   const activeProduct = productsList[activeProductIndex];
 
   const loadingStateMainProducts = useSelector(

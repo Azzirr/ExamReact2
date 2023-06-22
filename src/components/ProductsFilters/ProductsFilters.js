@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../common/styles/Headers.module.scss";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
-import { filterProducts} from "../../redux/productsSlice";
+import { filterProducts, filterByIsFood, loadProducts} from "../../redux/productsSlice";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 function ProductsFilters({handleChange}) {
   const dispatch = useDispatch();
@@ -14,8 +15,26 @@ function ProductsFilters({handleChange}) {
   const filterProductsFunction = () => {
     dispatch(filterProducts(searchValue))
   }
-  filterProductsFunction();
+  const [agreement, setAgreement] = useState(false);
 
+  function handleInternalChange(event){
+    const value = event.target.checked;
+    setAgreement(value);
+    if(value === true){
+      dispatch(filterByIsFood(value))
+    } else if (value === false){
+      axios.get('http://localhost:9000/products')
+      .then((response) => {
+        dispatch(loadProducts(response.data));
+      });
+    }
+  }  
+
+  useEffect(() => {
+    if(searchValue !== ''){
+      filterProductsFunction();
+    }
+  }, [searchValue])
   return (
     <div className={styles.filtersHeaderWrapper}>
       <Typography variant="h4">Filtruj produkty: </Typography>
@@ -36,7 +55,8 @@ function ProductsFilters({handleChange}) {
             label="Tylko produkty spożywcze"
             type="checkbox"
             name="agreement"
-            onChange={handleChange}
+            checked={agreement}
+            onChange={handleInternalChange}
           />
         </div>
       </FormGroup>
